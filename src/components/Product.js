@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ProductImage from './ProductImage';
 
+//TODO: Link to product page
 class Product extends Component {
   render() {
     if (!this.props.product.productImages[0]) {
