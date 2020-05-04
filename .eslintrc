@@ -1,0 +1,63 @@
+{
+  "env": {
+    "browser": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src",
+          "./"
+        ]
+      }
+    },
+    "react": {
+      "version": "latest"
+    }
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/react"
+  ],
+  "parser": "babel-eslint",
+  "plugins": [
+    "prettier",
+    "sort-destructure-keys",
+    "sort-keys-fix"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "all",
+        "singleQuote": true,
+        "printWidth": 100,
+      }
+    ],
+    "sort-destructure-keys/sort-destructure-keys": 2,
+    "sort-keys-fix/sort-keys-fix": 2,
+    "no-underscore-dangle": "off"
+  },
+  "overrides": [
+    {
+      "files": [
+        ".spec.jsx",
+        ".spec.js"
+      ],
+      "env": {
+        "jest": true
+      }
+    },
+    {
+      "files": [
+        ".storybook/**",
+        "*/stories/*"
+      ],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "react/jsx-filename-extension": 0,
+      }
+    }
+  ]
+}
