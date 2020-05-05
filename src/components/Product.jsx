@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import ProductImage from './ProductImage';
 
 const Product = ({ product }) => {
-  /*
-  if (!product.productImages[0]) {
-    product.productImages[0] = {
-      name: 'No Image',
-    };
-  }
-  */
   return (
     <div>
       <div>
-        <ProductImage key={product.productImages[0]._id} productImage={product.productImages[0]} />
+        {product.productImages.length ? (
+          product.productImages.map((image) => (
+            <ProductImage key={image._id} productImage={image} />
+          ))
+        ) : (
+          <div>No Image</div>
+        )}
+
         {product.name}
       </div>
     </div>

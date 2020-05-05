@@ -1,6 +1,6 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import { useQuery, gql } from '@apollo/client';
+
 import CategoryList from 'components/CategoryList';
 import ProductList from 'components/ProductList';
 
@@ -37,27 +37,23 @@ const QUERY = gql`
 `;
 
 const Shop = () => {
+  const { data, error, loading } = useQuery(QUERY);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error</div>;
+
+  const shop = data.shopById;
+
   return (
-    <Query query={QUERY}>
-      {({ data, error, loading }) => {
-        if (loading) return <div>Loading...</div>;
-        if (error) return <div>Error</div>;
-
-        const shop = data.shopById;
-
-        return (
-          <div>
-            {shop.name}
-            <div>
-              <CategoryList categories={shop.categories} />
-            </div>
-            <div>
-              <ProductList products={shop.products} />
-            </div>
-          </div>
-        );
-      }}
-    </Query>
+    <div>
+      {shop.name}
+      <div>
+        <CategoryList categories={shop.categories} />
+      </div>
+      <div>
+        <ProductList products={shop.products} />
+      </div>
+    </div>
   );
 };
 
