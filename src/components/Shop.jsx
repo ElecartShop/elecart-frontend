@@ -11,25 +11,18 @@ const QUERY = gql`
     shopById(_id: "5eaca956943bfa4faab04d3d") {
       _id
       name
-      categories {
+      categories(shop_id: "5eaca956943bfa4faab04d3d") {
         _id
         name
         product_ids
-        products {
+        products(shop_id: "5eaca956943bfa4faab04d3d") {
           _id
           name
+          url
           productImages {
             _id
             name
           }
-        }
-      }
-      products {
-        _id
-        name
-        productImages {
-          _id
-          name
         }
       }
     }
@@ -49,9 +42,6 @@ const Shop = () => {
       {shop.name}
       <div>
         <CategoryList categories={shop.categories} />
-      </div>
-      <div>
-        <ProductList products={shop.products} />
       </div>
     </div>
   );
